@@ -1,6 +1,6 @@
 ---
 title: "dlpyr and ggplot practice"
-output: pdf_document
+output: rmarkdown::github_document
 date: "2024-01-10"
 ---
 
