@@ -1,0 +1,99 @@
+---
+title: "dlpyr and ggplot practice"
+output: pdf_document
+date: "2024-01-10"
+---
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r setup, include=FALSE}
+library(dplyr)
+library(ggplot2)
+library(readr)
+library(ISLR)
+library(tidyr)
+
+```
+
+
+
+```{r}
+market <- Smarket
+market
+
+```
+
+
+```{r}
+market_long <- market %>% 
+  pivot_longer(cols = c("Lag1", "Lag2", "Lag3"), 
+               names_to = "Lag", 
+               values_to = "Value")
+market_long
+```
+
+
+
+```{r, echo = FALSE}
+
+fig1.2.1_boxplot <- ggplot(data = market, aes(x=Direction, y=Lag1, fill = Direction )) +
+            geom_boxplot() + 
+            theme_classic() +
+            scale_fill_manual(values = c("blue", "orange")) +
+            labs(x= "Today's Direction", y = "Percentage change in S&P500") +
+            scale_y_continuous(breaks = seq(-6, 6, 1)) +
+            
+                    
+                    
+fig1.2.1_boxplot
+```
+
+
+
+
+
+
+
+
+```{r}
+fig1.2.1_boxplot <- ggplot(data = market_long, aes(x = Direction, y = Value, fill = Direction)) +
+  geom_boxplot() +
+  facet_wrap(~ Lag, nrow = 1) +  # This creates three plots in a row, one for each Lag
+  theme_classic() +
+  scale_fill_manual(values = c("blue", "orange")) +
+  labs(x = "Today's Direction", y = "Percentage change in S&P500") +
+  scale_y_continuous(breaks = seq(-6, 6, 1))
+
+fig1.2.1_boxplot
+```
+
+
+
+```{r}
+
+```
+
+
+
+```{r}
+
+```
+
+
+
+```{r}
+
+```
+
+
+
+```{r}
+
+```
+
+
+
+
+```{r}
+
+```
